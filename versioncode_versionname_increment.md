@@ -14,16 +14,19 @@ VERSION_NAME=1.0.0
 Here's the code you can add to your `build.gradle` file:
 
 ```groovy
-def getVersionCode() {
+def versionCodeInc() {
     def versionPropsFile = file('version.properties')
     if (versionPropsFile.canRead()) {
-        def Properties versionProps = new Properties()
+        Properties versionProps = new Properties()
 
         versionProps.load(new FileInputStream(versionPropsFile))
 
-        def versionCode = versionProps['VERSION_CODE'].toInteger() + 1
-        versionProps['VERSION_CODE'] = versionCode.toString()
-        versionProps.store(versionPropsFile.newWriter(), null)
+        def versionCode = versionProps['VERSION_CODE'].toInteger()
+        if (getGradle().getStartParameter().getTaskRequests().toString().contains("Release")) {
+            versionCode += 1
+            versionProps['VERSION_CODE'] = versionCode.toString()
+            versionProps.store(versionPropsFile.newWriter(), null)
+        }
 
         return versionCode
     } else {
@@ -31,19 +34,21 @@ def getVersionCode() {
     }
 }
 
-def getVersionName() {
+def versionNameInc() {
     def versionPropsFile = file('version.properties')
     if (versionPropsFile.canRead()) {
-        def Properties versionProps = new Properties()
+        Properties versionProps = new Properties()
 
         versionProps.load(new FileInputStream(versionPropsFile))
 
         def versionName = versionProps['VERSION_NAME']
-        def (major, minor, patch) = versionName.tokenize('.')
-        patch = patch.toInteger() + 1
-        versionName = major + "." + minor + "." + patch
-        versionProps['VERSION_NAME'] = versionName
-        versionProps.store(versionPropsFile.newWriter(), null)
+        if (getGradle().getStartParameter().getTaskRequests().toString().contains("Release")) {
+            def (major, minor, patch) = versionName.tokenize('.')
+            patch = patch.toInteger() + 1
+            versionName = major + "." + minor + "." + patch
+            versionProps['VERSION_NAME'] = versionName
+            versionProps.store(versionPropsFile.newWriter(), null)
+        }
 
         return versionName
     } else {
