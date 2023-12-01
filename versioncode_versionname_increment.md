@@ -59,6 +59,15 @@ android {
     }
     // ...
 }
+
+android {
+    defaultConfig {
+        versionCode getVersionCode()
+        versionName getVersionName()
+        // ...
+    }
+    // ...
+}
 ```
 
 This code will increment the `versionCode` by 1 and the `patch` part of the `versionName` by 1 every time you build your project. If you want to increment the `major` or `minor` part of the `versionName`, you will need to do it manually in the `version.properties` file.
