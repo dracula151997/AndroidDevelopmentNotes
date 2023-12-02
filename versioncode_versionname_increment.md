@@ -64,13 +64,6 @@ android {
     }
     // ...
 }
-
-android {
-    defaultConfig {
-        versionCode getVersionCode()
-        versionName getVersionName()
-        // ...
-    }
     // ...
 }
 ```
