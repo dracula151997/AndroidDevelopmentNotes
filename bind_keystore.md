@@ -31,6 +31,11 @@ android {
 
 Replace `"path_to_your_keystore_file"`, `"your_keystore_password"`, `"your_key_alias"`, and `"your_key_password"` with your actual keystore details.
 
+3. Change the build variant to Release (Build -> Select Build Variant)
+4. Build the new release APK (Build -> Build Bundle(s) / APK(s) -> Build APK / Build Bundle)
+
+> You can use `./gradlew assembleRelease` gradle task to automate the process of changing the build variant to Release and building a new release.
+
 Please note that storing sensitive information like passwords in your `build.gradle` file is not recommended for security reasons. You should consider storing them in a secure and encrypted way or using environment variables.
 
 Also, remember not to commit sensitive information to your version control system.
