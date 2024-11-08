@@ -87,3 +87,41 @@ To build adaptive user interfaces in Jetpack Compose, you can leverage the Mater
   Use this for making app navigation responsive and adaptable to various devices and orientations.
 
 Combine these dependencies as needed to build a fully adaptive app experience.
+## [Window size classes](https://developer.android.com/develop/ui/compose/building-adaptive-apps#window_size_classes)
+Compute your app's WindowSizeClass using the currentWindowAdaptiveInfo() top‑level function of the Compose Material 3 Adaptive library. The function returns an instance of WindowAdaptiveInfo, which contains windowSizeClass. Your app receives updates whenever the window size class changes:
+  ```kotlin
+  val windowsClass = currentWindowAdaptiveInfo().windowSizeClass
+val windowsPosture = currentWindowAdaptiveInfo().windowPosturec
+  ```
+### `currentWindowAdaptiveInfo()` Properties Overview
+
+The `currentWindowAdaptiveInfo()` composable function provides two important properties to build adaptive UIs for different devices and screen configurations:
+
+- **`windowSizeClass`**: Categorizes the window into logical sizes such as `Compact`, `Medium`, and `Expanded`. It helps you adapt layouts based on available screen space, like switching between single-column and multi-column views.
+- **`windowPosture`**: Describes the physical posture or configuration of a device's screen (e.g., folded, flat, or half-open). This property is useful for adapting UIs for foldable devices and different form factors.
+
+By combining `windowSizeClass` and `windowPosture`, you can create responsive and adaptive user interfaces that adjust based on screen size and device posture.
+
+Here's a concise summary for your `README.md` file:
+
+---
+
+Here's the updated section for your `README.md` file with the link added:
+
+---
+
+### [Content Panes in Adaptive UI Design](https://developer.android.com/develop/ui/compose/building-adaptive-apps#content_panes)
+
+**Content panes** enable displaying multiple content areas within a layout, optimizing space on larger screens such as tablets or foldables.
+
+- **Terminology**: A "pane" represents an individual content area within a layout, differing from the traditional "screen" concept, which implies full device coverage.
+- **Multi-Pane Layouts**: On expanded-width devices, multiple panes can be shown side-by-side, e.g., a list and its detailed view.
+- **Adaptive Behavior**: 
+  - **Compact/Medium Widths**: Display a single pane for primary content.
+  - **Expanded Widths**: Show multiple panes, providing additional context.
+- **Navigation**: 
+  - **Compact/Medium**: Navigate between single panes.
+  - **Expanded**: Update content in one pane without disrupting others.
+
+Using content panes ensures responsive, user-friendly UIs across various screen sizes.
+
